@@ -1,0 +1,7 @@
+
+// external files
+
+*.exe
+
+.vscode
+.vscode/*
