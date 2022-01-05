@@ -7,6 +7,8 @@
 #include <GLFW/glfw3.h>
 
 #include "parameter.h"
+#include "Shader.h"
+#include "Model.h"
 
 class Renderer
 {

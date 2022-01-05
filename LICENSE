@@ -22,7 +22,10 @@ All of the code except below ones:
     ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
     OTHER DEALINGS IN THE SOFTWARE.
 
-For more information, please refer to <http://unlicense.org>
+    For more information, please refer to <http://unlicense.org>
+
+Some codes are from external source. (learnopengl.com, stackoverflow, etc.)
+    you can find the link of each of them by reading comments above those codes.
 
 The stb source code:
     This software is available under 2 licenses -- choose whichever you prefer.

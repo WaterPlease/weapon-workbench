@@ -1,5 +1,4 @@
 #include "Renderer.h"
-#include "Shader.h"
 
 void Renderer::InitRenderer() {
 	glfwInit();
@@ -19,21 +18,39 @@ void Renderer::InitRenderer() {
 		std::cout << "Failed to init GLAD" << std::endl;
 		exit(-1);
 	}
+
+	
+	glEnable(GL_DEPTH_TEST);
+
+	// Camera Initiation
+	cam.updatePVMat();
+
 	draw_prepare();
 }
 
 Shader* shader;
-unsigned int VBO, VAO;
+Model* model;
 void Renderer::draw_prepare(){
-	shader = new Shader("C:\\shaders\\vertex.glsl", "C:\\shaders\\frag.glsl");
+	shader = new Shader("shaders\\vertex.glsl", "shaders\\frag.glsl");
+	model = new Model("./models/mp40/mp40.obj",shader);
+
+	model->setPos(glm::vec3(0.0f,0.0f,0.0f));
+	model->setRot(glm::vec4(0,0,1,0));
+	model->setScale(glm::vec3(0.1,0.1,0.1));
+	model->updateTrans();
 }
 void Renderer::run() {
 	while (!glfwWindowShouldClose(window)) {
 		// Draw
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		//model->draw();
+		model->setRot(glm::vec4(
+			(float)glfwGetTime(),
+			0.0f,1.0f,0.0f
+		));
+		model->updateTrans();
+		model->draw();
 
 		// loop
 		glfwSwapBuffers(window);

@@ -2,6 +2,10 @@
 // external files
 
 *.exe
+*.o
 
 .vscode
 .vscode/*
+
+./models/*
+./models/mp40/mp40.mtl
