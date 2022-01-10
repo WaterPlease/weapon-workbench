@@ -10,8 +10,8 @@
 
 #include "glmCommon.h"
 
-
-// Shader class from
+// This code is modified.
+// Original Shader class code is from
 // https://learnopengl.com/code_viewer_gh.php?code=includes/learnopengl/shader_s.h
 
 struct mat{
@@ -38,10 +38,21 @@ public:
     void setBool(const std::string& name, bool value) const;
     void setInt(const std::string& name, int value) const;
     void setFloat(const std::string& name, float value) const;
+    void setVec3(const std::string& name, const float value[3]) const;
     void setMat4(const std::string& name, const glm::mat4& value) const;
 };
 
 extern const std::string strTrans;
 extern const std::string strPV;
+
+extern const std::string strAMBI;
+extern const std::string strDIFF;
+extern const std::string strSPEC;
+extern const std::string strSHINE;
+
+extern const std::string strLdir;
+extern const std::string strLcol;
+
+extern const std::string strViewPos;
 
 #endif

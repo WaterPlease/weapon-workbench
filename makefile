@@ -8,6 +8,7 @@ INC             = -I./include
  
 all : $(TARGET)
 	$(CXX) -g -o $(TARGET) $(OBJS) $(INC) $(LIB_DIRS) $(LIBS)
+	del -f *.o
 
 $(TARGET) :
 	$(CXX) -g -c $(SRCS) $(INC) $(LIB_DIRS) $(LIBS)

@@ -94,6 +94,21 @@ void Shader::setMat4(const std::string& name, const glm::mat4& value) const{
     glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()),
                         1, GL_FALSE, glm::value_ptr(value));
 }
+void Shader::setVec3(const std::string& name, const float *value) const{
+    glUniform3fv(glGetUniformLocation(ID, name.c_str()),
+                        1, value);
+}
+
 
 const std::string strTrans("transform");
 const std::string strPV("view");
+
+const std::string strAMBI("mat.ambient");
+const std::string strDIFF("mat.diffuse");
+const std::string strSPEC("mat.specular");
+const std::string strSHINE("mat.shininess");
+
+const std::string strLdir("light.dir");
+const std::string strLcol("light.color");
+
+const std::string strViewPos("viewPos");

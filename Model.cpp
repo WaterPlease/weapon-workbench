@@ -200,7 +200,8 @@ void Model::objParser(const char* path){
         }
     }
 }
-
+float temp_light_dir[] = {0.0f, 0.0f, -1.0f};
+float temp_light_color[] = {1.0f, 1.0f, 1.0f};
 void Model::draw(){
     shader->use();
     shader->setMat4(strTrans,matTrans);
@@ -209,9 +210,20 @@ void Model::draw(){
 
     for(auto iter=groups.begin(); iter!=groups.end();iter++){
         Group* ptr_group = iter->second;
+        Material* ptr_mat = ptr_group->mat;
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D,ptr_group->mat->map_Kd);
+
+        shader->setVec3(strAMBI,ptr_mat->Ka);
+        shader->setVec3(strDIFF,ptr_mat->Kd);
+        shader->setVec3(strSPEC,ptr_mat->Ks);
+        shader->setFloat(strSHINE,ptr_mat->Ns);
+
+        shader->setVec3(strLdir,temp_light_dir);
+        shader->setVec3(strLcol,temp_light_color);
+
+        shader->setVec3(strViewPos,glm::value_ptr(cam.getPos()));
 
         glBindVertexArray(ptr_group->VAO);
         glDrawArrays(GL_TRIANGLES,0,ptr_group->vbo_data.size()/8);
